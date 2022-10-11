@@ -29,4 +29,9 @@ az network vnet create --name $vnet --resource-group $resourceGroup --address-pr
 
 ##  ************************** Create Windows VM  ************************************
 az vm create --resource-group $resourceGroup  --name "$vm-dcsql01s" --location $region --size Standard_D2_v4  --admin-username $user  --admin-password $pwd  --image $imageraw --vnet-name $vnet  --subnet $subnetname --zone 1  --private-ip-address $staticIP
+##  ************************** Windows VM install step 1  ************************************
 az vm run-command invoke -g $resourceGroup -n "$vm-dcsql01s" --command-id RunPowerShellScript --scripts "[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Laurentcadieux/UiPath_EASY_LAB/main/L1_master_win_dc_sql.ps1'))"
+##  ************************** Windows VM pause reboot via powershell pause 2 minutes ************************************
+Start-Sleep -Seconds 120
+##  ************************** Windows VM install step 2  ************************************
+az vm run-command invoke -g $resourceGroup -n "$vm-dcsql01s" --command-id RunPowerShellScript --scripts "[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Laurentcadieux/UiPath_EASY_LAB/main/L1_master_win_dc_sql_2.ps1'))"
