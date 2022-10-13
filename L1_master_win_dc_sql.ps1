@@ -1,8 +1,5 @@
-# Install AD DS and AD DNS
-### Open Pwershell as Administrator 
-### Install key services needed 
-Add-WindowsFeature AD-Domain-Services, DNS -IncludeManagementTools
-## Cheat code
+
+## Cheat code with Choco
 #install chocolatey CHEAT CODE
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 #via chocolatey install sql-server with tools CHEAT CODE
@@ -10,4 +7,9 @@ netsh advfirewall firewall add rule name="SQL Server 1433" dir=in action=allow p
 #via chocolatey install SQL Studio 
 choco install sql-server-management-studio -y	
 choco install putty.install --version=0.71 -y
+choco install sql-server-2019 -y
+### Open Pwershell as Administrator 
+### Install key services needed 
+# Install AD DS and AD DNS
+Add-WindowsFeature AD-Domain-Services, DNS -IncludeManagementTools
 shutdown -r
