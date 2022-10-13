@@ -7,7 +7,6 @@ netsh advfirewall firewall add rule name="SQL Server 1433" dir=in action=allow p
 #via chocolatey install SQL Studio 
 choco install sql-server-management-studio -y	
 choco install putty.install --version=0.71 -y
-choco install sql-server-2019 -y
 ### Open Pwershell as Administrator 
 ### Install key services needed 
 # Install AD DS and AD DNS
